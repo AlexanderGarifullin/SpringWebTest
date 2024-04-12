@@ -1,9 +1,6 @@
 package hse.example.mvc.models;
 
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +21,12 @@ public class Person {
     @NotEmpty(message = "Email should not be empty")
     @Email(message = "Email should be valid")
     private String email;
+
+    // Страна, Город, Индекс (6 цифр)
+    // Russia, Moscow, 123456
+    @Pattern(regexp = "[A-Z]\\w+, [A-Z]\\w+, \\d{6}",
+            message = "Your address should be in this format: Country, City, Postal Code(6 digits)")
+    public String address;
 
     public Person(){}
 }
